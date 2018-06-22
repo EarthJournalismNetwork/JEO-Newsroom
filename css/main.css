@@ -1435,7 +1435,7 @@ p.author-card-about {
   display: none;
 }
 
-#subscribe-menu {
+#masthead #mastnav ul.menu li#subscribe-menu {
   float: right;
   border: 1px solid #415ba8;
   padding: 0px 10px;
