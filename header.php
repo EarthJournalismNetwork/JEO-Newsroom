@@ -69,7 +69,7 @@
 			Sign up for monthly updates of ocean research and policies
 		</div>
 		<div id="subscribe-form">
-			<?php do_shortcode('[mc4wp_form id="19800"]'); ?>
+			<?php echo do_shortcode('[mc4wp_form id="19800"]'); ?>
 		</div>
 	</div>
 	<div class="mobile-header" style="display:none;">

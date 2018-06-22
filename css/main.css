@@ -1427,3 +1427,10 @@ p.author-card-about {
 /*************** AUTHORS ******************/
 
 /*# sourceMappingURL=main.css.map */
+#subscribe-bar{
+  display: block;
+}
+
+#subscribe-bar.hidden {
+  display: none;
+}
