@@ -32,6 +32,7 @@
 				<?php newsroom_logo(); ?>
 			</div>
 			<div class="top-nav">
+				<?php get_search_form(); ?>
 				<nav id="langnav">
 					<?php
 					if(function_exists('qtranxf_generateLanguageSelectCode')) {
@@ -86,7 +87,6 @@
 					<?php
 				endif;
 				?>
-	      <?php get_search_form(); ?>
 			</div>
 		</nav>
 	</div>
