@@ -61,7 +61,6 @@
 		<div>
 			<nav id="mastnav">
 				<?php wp_nav_menu(array('theme_location' => 'header_menu')); ?>
-	      <?php get_search_form(); ?>
 			</nav>
 		</div>
 	</header>

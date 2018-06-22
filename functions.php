@@ -370,7 +370,7 @@ add_filter( 'the_date', 'tp_convert_date', 10, 4 );
 add_action( 'get_the_date', 'tp_convert_date', 10, 3 );
 
 function subscribe_nav($items, $args) {
-	$subscribe = '<li><a id="subscribe" href="#">Subscribe</a></li>';
+	$subscribe = '<li id="subscribe-menu"><a id="subscribe" href="#">Subscribe</a></li>';
 	return $items . $subscribe;
 }
 add_filter('wp_nav_menu_items', 'subscribe_nav', 13, 2);

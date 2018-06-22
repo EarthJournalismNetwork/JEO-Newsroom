@@ -1434,3 +1434,23 @@ p.author-card-about {
 #subscribe-bar.hidden {
   display: none;
 }
+
+#subscribe-menu {
+  float: right;
+  border: 1px solid #415ba8;
+  padding: 0px 10px;
+  background: #415ba8;
+  color: #fff;
+  margin: 0px;
+}
+
+#subscribe-menu #subscribe {
+  color: #fff;
+}
+
+.top-nav form {
+  width: 30%;
+  float: left;
+  padding-top: 15px;
+  padding-left: 140px;
+}
