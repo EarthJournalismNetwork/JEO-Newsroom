@@ -66,7 +66,7 @@
 	</header>
 	<div id="subscribe-bar" class="hidden">
 		<div id="subscribe-content">
-			Sign up for monthly updates of ocean research and policies
+			Sign up for updates from The Third Pole
 		</div>
 		<div id="subscribe-form">
 			<?php echo do_shortcode('[mc4wp_form id="19800"]'); ?>

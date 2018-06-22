@@ -1428,7 +1428,10 @@ p.author-card-about {
 
 /*# sourceMappingURL=main.css.map */
 #subscribe-bar{
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  padding-left: 30%;
+  background-color: #415ba8;
 }
 
 #subscribe-bar.hidden {
@@ -1444,7 +1447,7 @@ p.author-card-about {
   margin: 0px;
 }
 
-#subscribe-menu #subscribe {
+#masthead #mastnav ul.menu li#subscribe-menu a#subscribe {
   color: #fff;
 }
 
