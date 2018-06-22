@@ -1462,3 +1462,14 @@ p.author-card-about {
   padding-top: 15px;
   padding-left: 140px;
 }
+
+#subscribe-bar .mc4wp-form-fields {
+  display: flex;
+}
+#subscribe-bar input {
+  width: 200px;
+}
+
+#subscribe-content {
+  padding: 20px;
+}
