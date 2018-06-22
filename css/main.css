@@ -1465,11 +1465,17 @@ p.author-card-about {
 
 #subscribe-bar .mc4wp-form-fields {
   display: flex;
+  align-items: center;
 }
 #subscribe-bar input {
   width: 200px;
 }
 
 #subscribe-content {
-  padding: 20px;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+}
+#subscribe-form {
+  padding-top: 15px;
 }
