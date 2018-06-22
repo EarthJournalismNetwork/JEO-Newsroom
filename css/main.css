@@ -1470,11 +1470,15 @@ p.author-card-about {
 #subscribe-bar input {
   width: 200px;
 }
-
+#subscribe-form .mc4wp-form-fields input[type="email"] {
+  padding: 5px 0 7px 5px;
+  margin-right: 10px;
+}
 #subscribe-content {
   margin: 20px;
   display: flex;
   align-items: center;
+  color: #fff;
 }
 #subscribe-form {
   padding-top: 15px;
