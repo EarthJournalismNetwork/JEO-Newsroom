@@ -1432,9 +1432,14 @@ p.author-card-about {
   align-items: center;
   padding-left: 30%;
   background-color: #415ba8;
+  width: 100%
 }
 
 #subscribe-bar.hidden {
+  display: none;
+}
+
+#subscribe-bar label {
   display: none;
 }
 
