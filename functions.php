@@ -374,3 +374,20 @@ function subscribe_nav($items, $args) {
 	return $items . $subscribe;
 }
 add_filter('wp_nav_menu_items', 'subscribe_nav', 13, 2);
+
+function tp_publishing_date( $the_date, $d, $post ) {
+	$value = get_field( "publishing_date" );
+	if ( $value == false ) {
+		$value = $the_date;
+	} else {
+		if ( $d == '' ) {
+			$format = 'l F jS, Y';
+		} else {
+			$format = $d;
+		}
+		$date = DateTime::createFromFormat( 'd-m-Y', $value );
+		$value = $date->format($format);
+	}
+	return $value;
+}
+add_action( 'get_the_date', 'tp_publishing_date', 99, 3 );
