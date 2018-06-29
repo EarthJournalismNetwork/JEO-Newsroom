@@ -33,13 +33,6 @@
 			</div>
 			<div class="top-nav">
 				<?php get_search_form(); ?>
-				<nav id="langnav">
-					<?php
-					if(function_exists('qtranxf_generateLanguageSelectCode')) {
-						echo qtranxf_generateLanguageSelectCode('text');
-					}
-					?>
-				</nav>
 				<nav id="socialnav">
 					<?php
 					$fb = newsroom_get_facebook_url();
@@ -54,6 +47,13 @@
 						<a href="<?php echo $tw; ?>" rel="external" title="Twitter" class="icon icon-twitter"></a>
 						<?php
 					endif;
+					?>
+				</nav>
+				<nav id="langnav">
+					<?php
+					if(function_exists('qtranxf_generateLanguageSelectCode')) {
+						echo qtranxf_generateLanguageSelectCode('text');
+					}
 					?>
 				</nav>
 			</div>

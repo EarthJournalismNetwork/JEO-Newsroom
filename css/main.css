@@ -290,7 +290,7 @@ h6 {
   border-radius: 3px;
 }
 #masthead #socialnav {
-  float: right;
+  float: left;
   line-height: 60px;
   text-align: right;
 }
@@ -1458,8 +1458,11 @@ p.author-card-about {
   color: #fff;
 }
 
+.top-nav {
+  display: flex;
+}
+
 .top-nav form {
-  width: 30%;
   float: left;
   padding-top: 15px;
   padding-left: 140px;
