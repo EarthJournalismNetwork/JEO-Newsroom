@@ -275,9 +275,9 @@ function newsroom_social_apis() {
 	?>
 	<script type="text/javascript">
 	  (function() {
-	    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-	    po.src = 'https://apis.google.com/js/plusone.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+		var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+		po.src = 'https://apis.google.com/js/plusone.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
 	  })();
 	</script>
 	<?php
@@ -351,24 +351,6 @@ function author_list_func( ){
 }
 add_shortcode( 'author_list', 'author_list_func' );
 
-function tp_convert_date( $the_date, $d, $before, $after ) {
-	$currentLang = get_locale();
-	$fmt = datefmt_create( 
-	$currentLang ,
-	IntlDateFormatter::FULL, 
-	IntlDateFormatter::FULL,
-		'America/Los_Angeles',
-		IntlDateFormatter::GREGORIAN ,
-		"MMMM dd, yyyy"
-	);
-	$date = DateTime::createFromFormat('l F jS, Y', $the_date);
-	
-	$text = datefmt_format( $fmt , $date);
-	echo $text;
-}
-add_filter( 'the_date', 'tp_convert_date', 10, 4 );
-add_action( 'get_the_date', 'tp_convert_date', 10, 3 );
-
 function subscribe_nav($items, $args) {
 	$subscribe = '<li id="subscribe-menu"><a id="subscribe" href="#">Subscribe</a></li>';
 	return $items . $subscribe;
@@ -376,18 +358,16 @@ function subscribe_nav($items, $args) {
 add_filter('wp_nav_menu_items', 'subscribe_nav', 13, 2);
 
 function tp_publishing_date( $the_date, $d, $post ) {
-	$value = get_field( "publishing_date" );
-	if ( $value == false ) {
-		$value = $the_date;
-	} else {
-		if ( $d == '' ) {
-			$format = 'l F jS, Y';
+		$currentLang = get_locale();
+		setlocale(LC_TIME, $currentLang);
+		$value = get_field( "publishing_date" );
+		if ( $value == false ) {
+			$ts = mysql2date('U', $post->post_date);
 		} else {
-			$format = $d;
+			$date = DateTime::createFromFormat( 'd-m-Y', $value );
+			$ts = $date->format('U'); 
 		}
-		$date = DateTime::createFromFormat( 'd-m-Y', $value );
-		$value = $date->format($format);
-	}
-	return $value;
+		$value = strftime("%B %d, %Y", $ts);
+		return $value;
 }
 add_action( 'get_the_date', 'tp_publishing_date', 99, 3 );
