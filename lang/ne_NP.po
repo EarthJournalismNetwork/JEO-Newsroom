@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 4.9.x - Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-08-14 13:51+0700\n"
+"PO-Revision-Date: 2018-08-14 18:20+0700\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -7411,7 +7411,7 @@ msgstr "\"%s\" नाम गरेको विषयवस्तुको ड�
 #: wp-includes/class-wp-query.php:1373
 msgctxt "Comma-separated list of search stopwords in your language"
 msgid "about,an,are,as,at,be,by,com,for,from,how,in,is,it,of,on,or,that,the,this,to,was,what,when,where,who,will,with,www"
-msgstr "बारेमा,एक,छन,जस्तै,मा,छ,ले,com,लागि,बाट,कसरी,भित्र,हो,यो,को,माथि,वा,त्यो,यस,यो,लागि,िथयो,के,कहिले,कहाँ,को,गर्नेछ,संग,www"
+msgstr ""
 
 #: wp-includes/post-template.php:1610
 msgid "This content is password protected. To view it please enter your password below:"
