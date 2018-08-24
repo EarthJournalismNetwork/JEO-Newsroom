@@ -75,7 +75,13 @@ class Newsroom_Featured_Media {
     $post_id = $post_id ? $post_id : $post->ID;
 
     $type = get_post_meta($post_id, 'newsroom_featured_media_type', true);
-    $description = get_post_meta($post_id, 'newsroom_img_desc', true);
+    $custom_desc = get_post_meta($post_id, 'newsroom_img_desc', true);
+    $img_desc = get_post(get_post_thumbnail_id())->post_excerpt;
+    if ( $custom_desc == '' ) {
+      $description = $img_desc;
+    } else {
+      $description = $custom_desc;
+    }
     $type = $type ? $type : 'image';
 
     switch($type) {
