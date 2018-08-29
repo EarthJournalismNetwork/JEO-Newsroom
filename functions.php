@@ -177,7 +177,7 @@ function newsroom_main_scripts() {
 
   // Enqueue child theme main CSS
 
-  wp_enqueue_style('newsroom-styles', get_stylesheet_directory_uri() . '/css/main.css', array('newsroom-normalize', 'newsroom-entypo', 'newsroom-fonts'), '0.0.1');
+  wp_enqueue_style('newsroom-styles', get_stylesheet_directory_uri() . '/css/main.css', array('newsroom-normalize', 'newsroom-entypo', 'newsroom-fonts'), '1.1');
 
 }
 add_action('wp_enqueue_scripts', 'newsroom_main_scripts');
