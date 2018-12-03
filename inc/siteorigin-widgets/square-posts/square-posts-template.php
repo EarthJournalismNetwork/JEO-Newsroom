@@ -20,7 +20,7 @@ if($square_posts_query->have_posts()) :
           <div class="square-posts-post-content">
             <h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
             <?php if (get_post_meta($post->ID, 'is_label', true) == "1") ?>
-            <a href="#"><span class="label">Belt, Road & the Environment</span></a>
+            <a href="https://earthjournalism.net/"><span class="label">Belt, Road & the Environment</span></a>
             <?php endif ?>
             <p class="date"><?php echo get_the_date(); ?></p>
           </div>
