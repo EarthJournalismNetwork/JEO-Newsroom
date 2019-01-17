@@ -23,13 +23,13 @@ if($list_posts_query->have_posts()) :
         <article id="list-posts-<?php the_ID(); ?>">
           <?php if(has_post_thumbnail()) : ?>
             <div class="list-posts-thumbnail">
-              <?php if (get_post_meta(get_the_ID(), 'is_label', true) == "1"): ?>
-              <a href="#"><span class="label">Belt, Road & the Environment</span></a><br>
-              <?php endif; ?>
               <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('list-thumb'); ?></a>
             </div>
           <?php endif; ?>
           <div class="list-posts-post-content">
+            <?php if (get_post_meta(get_the_ID(), 'is_label', true) == "1"): ?>
+              <a href="#"><span class="label">Belt, Road & the Environment</span></a><br>
+              <?php endif; ?>
             <h3><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3>
             <p class="date"><?php echo get_the_date(); ?></p>
           </div>
