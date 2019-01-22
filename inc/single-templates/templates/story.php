@@ -8,7 +8,7 @@
 		<header class="page-header">
 			<h1><?php the_title(); ?></h1>
 			<?php if (get_post_meta(get_the_ID(), 'is_label', true) == "1"): ?>
-            <a href="#"><span class="label">Belt, Road & the Environment</span></a>
+            <a href="#"><span class="label">Belt and Road</span></a>
             <?php endif; ?>
 			<?php global $post; if($post->post_excerpt) : ?>
 				<div class="subhead">

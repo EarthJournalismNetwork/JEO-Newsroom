@@ -27,10 +27,12 @@ if($list_posts_query->have_posts()) :
             </div>
           <?php endif; ?>
           <div class="list-posts-post-content">
-            <?php if (get_post_meta(get_the_ID(), 'is_label', true) == "1"): ?>
-              <a href="#"><span class="label">Belt, Road & the Environment</span></a><br>
+            <h3>
+              <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
+              <?php if (get_post_meta(get_the_ID(), 'is_label', true) == "1"): ?>
+              <a href="#"><span class="label">Belt and Road</span></a>
               <?php endif; ?>
-            <h3><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3>
+            </h3>
             <p class="date"><?php echo get_the_date(); ?></p>
           </div>
         </article>
