@@ -75,6 +75,13 @@ class Newsroom_Featured_Media {
     $post_id = $post_id ? $post_id : $post->ID;
 
     $type = get_post_meta($post_id, 'newsroom_featured_media_type', true);
+    $custom_desc = get_post_meta($post_id, 'newsroom_img_desc', true);
+    $img_desc = get_post(get_post_thumbnail_id())->post_excerpt;
+    if ( $custom_desc == '' ) {
+      $description = $img_desc;
+    } else {
+      $description = $custom_desc;
+    }
     $type = $type ? $type : 'image';
 
     switch($type) {
@@ -82,7 +89,7 @@ class Newsroom_Featured_Media {
         $src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'kicker');
         echo '<div class="kicker-image-container" style="width:' . $src[1] . 'px;">';
         the_post_thumbnail('kicker');
-        echo '<div class="image-caption">' . apply_filters('the_content', get_post(get_post_thumbnail_id())->post_excerpt) . '</div>';
+        echo '<div class="image-caption">' . apply_filters('the_content', $description) . '</div>';
         echo '</div>';
         break;
       case 'gallery':

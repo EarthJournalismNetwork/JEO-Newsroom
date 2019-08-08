@@ -173,10 +173,11 @@ function newsroom_main_scripts() {
 
 	// Main
 	wp_enqueue_script('newsroom-main', get_stylesheet_directory_uri() . '/js/main.js', array('jquery', 'fitvids'), '0.0.1');
+	wp_enqueue_script('subscribe', get_stylesheet_directory_uri() . '/js/subscribe.js', array('jquery'), '0.0.2');
 
   // Enqueue child theme main CSS
 
-  wp_enqueue_style('newsroom-styles', get_stylesheet_directory_uri() . '/css/main.css', array('newsroom-normalize', 'newsroom-entypo', 'newsroom-fonts'));
+  wp_enqueue_style('newsroom-styles', get_stylesheet_directory_uri() . '/css/main.css', array('newsroom-normalize', 'newsroom-entypo', 'newsroom-fonts'), '1.1');
 
 }
 add_action('wp_enqueue_scripts', 'newsroom_main_scripts');
@@ -188,11 +189,20 @@ function newsroom_pb_parse_query($pb_query) {
 		$query['tax_query'] = array();
 		foreach($tax_args as $tax_arg) {
 			$tax_arg = explode(':', $tax_arg);
-			$query['tax_query'][] = array(
-				'taxonomy' => $tax_arg[0],
-				'field' => 'slug',
-				'terms' => $tax_arg[1]
-			);
+			if ( '-' == substr($tax_arg[1], 0, 1) ) {
+				$query['tax_query'][] = array(
+					'taxonomy' => $tax_arg[0],
+					'field' => 'slug',
+					'terms' => substr($tax_arg[1], 1),
+					'operator' => 'NOT IN',
+				);
+			} else {
+				$query['tax_query'][] = array(
+					'taxonomy' => $tax_arg[0],
+					'field' => 'slug',
+					'terms' => $tax_arg[1]
+				);	
+			}
 		}
 	}
 	return $query;
@@ -274,9 +284,9 @@ function newsroom_social_apis() {
 	?>
 	<script type="text/javascript">
 	  (function() {
-	    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-	    po.src = 'https://apis.google.com/js/plusone.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+		var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+		po.src = 'https://apis.google.com/js/plusone.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
 	  })();
 	</script>
 	<?php
@@ -350,37 +360,23 @@ function author_list_func( ){
 }
 add_shortcode( 'author_list', 'author_list_func' );
 
-
-
-/******************************************
-CUSTOM AUTHOR CARD SHORTCODE
-******************************************/
-
-function author_card_func() {
-
-	$author_id = get_the_author_meta( 'ID' );
-
-	$authorcard = '<div class="author-card">';
-		$authorcard .= '<div class="author-bio-avatar">';
-			$authorcard .= get_avatar( get_the_author_meta( 'user_email' ) ); 
-		$authorcard .= '</div>';
-
-		$authorcard .= '<div class="author-bio-description">';
-		$authorcard .= '<h3 class="author-headline">' . get_the_author() . '</h3>';
-		if ( get_the_author_meta( 'description' ) ) : 
-				$authorcard .= '<p class="author-card-about">About the author</p>';
-				$authorcard .= get_the_author_meta( 'description' ); 
-		endif;
-		$authorcard .= '</div>';
-		$authorcard .= '<div class="author-card-count">';
-			$authorcard .= '<ul>';
-				$authorcard .= '<li>' . count_user_posts($author_id) . ' Posts</li>';
-				$authorcard .= '<li><a href="' . get_bloginfo('url') . '/author/' . get_the_author_meta( 'user_nicename' ) . '">See all <span class="mobHide">posts by this author</span></a></li>';
-			$authorcard .= '</ul>';
-		$authorcard .= '</div>';
-	$authorcard .= '</div>';
-
-	return $authorcard;
+function subscribe_nav($items, $args) {
+	$subscribe = '<li id="subscribe-menu"><a id="subscribe" href="#">Subscribe</a></li>';
+	return $items . $subscribe;
 }
-add_shortcode('author_card', 'author_card_func');
+add_filter('wp_nav_menu_items', 'subscribe_nav', 13, 2);
 
+function tp_publishing_date( $the_date, $d, $post ) {
+		$currentLang = get_locale();
+		setlocale(LC_TIME, $currentLang);
+		$value = get_field( "publishing_date" );
+		if ( $value == false ) {
+			$ts = mysql2date('U', $post->post_date);
+		} else {
+			$date = DateTime::createFromFormat( 'd-m-Y', $value );
+			$ts = $date->format('U'); 
+		}
+		$value = date_i18n("F d, Y", $ts);
+		return $value;
+}
+add_action( 'get_the_date', 'tp_publishing_date', 99, 3 );

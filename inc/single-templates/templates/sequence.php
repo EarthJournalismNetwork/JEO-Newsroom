@@ -17,7 +17,7 @@
       </div>
 			<div class="post-meta">
         <div class="byline">
-  				<p><?php the_author(); ?>, <?php the_date(); ?></p>
+  				<p><?php the_author(); ?>, <?php echo get_the_date(); ?></p>
         </div>
         <div class="terms">
           <?php newsroom_tax_terms(); ?>

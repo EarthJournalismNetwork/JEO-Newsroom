@@ -7,6 +7,9 @@
 	<article id="primary" class="content-area" role="main">
 		<header class="page-header">
 			<h1><?php the_title(); ?></h1>
+			<?php if (get_post_meta(get_the_ID(), 'is_label', true) == "1"): ?>
+            <a href="#"><span class="label">Belt and Road</span></a>
+            <?php endif; ?>
 			<?php global $post; if($post->post_excerpt) : ?>
 				<div class="subhead">
 					<?php the_excerpt(); ?>
@@ -17,7 +20,7 @@
 			</div>
 			<div class="post-meta">
 				<div class="byline">
-					<p><?php the_author(); ?>, <?php the_date(); ?></p>
+					<p><?php the_author(); ?>, <?php echo date_i18n(get_option('date_format'), strtotime($post->post_date)); ?></p>
 				</div>
 				<div class="terms">
 					<?php newsroom_tax_terms(); ?>

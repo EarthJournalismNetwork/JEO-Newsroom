@@ -18,7 +18,12 @@ if($square_posts_query->have_posts()) :
             </div>
           <?php endif; ?>
           <div class="square-posts-post-content">
-            <h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
+            <h2>
+              <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
+              <?php if (get_post_meta(get_the_ID(), 'is_label', true) == "1"): ?>
+              <br><a href="#"><span class="label">Belt and Road</span></a><br>
+              <?php endif; ?>
+            </h2>
             <p class="date"><?php echo get_the_date(); ?></p>
           </div>
         </article>

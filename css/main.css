@@ -253,7 +253,6 @@ h6 {
 }
 #masthead .top-nav {
   float: left;
-  display: block;
   margin-right: 2.35765%;
   width: 48.82117%;
 }
@@ -290,7 +289,7 @@ h6 {
   border-radius: 3px;
 }
 #masthead #socialnav {
-  float: right;
+  float: left;
   line-height: 60px;
   text-align: right;
 }
@@ -1427,3 +1426,65 @@ p.author-card-about {
 /*************** AUTHORS ******************/
 
 /*# sourceMappingURL=main.css.map */
+#subscribe-bar{
+  display: inline-flex;
+  align-items: center;
+  padding-left: 30%;
+  background-color: #415ba8;
+  width: 100%;
+  position: absolute;
+  z-index: 999;
+}
+
+#subscribe-bar.hidden {
+  display: none;
+}
+
+#subscribe-bar label {
+  display: none;
+}
+
+#masthead #mastnav ul.menu li#subscribe-menu {
+  float: right;
+  border: 1px solid #415ba8;
+  padding: 0px 10px;
+  background: #415ba8;
+  color: #fff;
+  margin: 0px;
+}
+
+#masthead #mastnav ul.menu li#subscribe-menu a#subscribe {
+  color: #fff;
+}
+
+.top-nav {
+  display: flex;
+  align-items: end;
+  justify-content: flex-end;
+}
+
+.top-nav form {
+  float: left;
+  padding-top: 15px;
+}
+
+#subscribe-bar .mc4wp-form-fields {
+  display: flex;
+  align-items: center;
+}
+#subscribe-bar input {
+  width: 200px;
+}
+#subscribe-form .mc4wp-form-fields input[type="email"] {
+  padding: 5px 0 7px 5px;
+  margin-right: 10px;
+}
+#subscribe-content {
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+#subscribe-form {
+  padding-top: 15px;
+}

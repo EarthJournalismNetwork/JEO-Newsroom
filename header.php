@@ -32,13 +32,7 @@
 				<?php newsroom_logo(); ?>
 			</div>
 			<div class="top-nav">
-				<nav id="langnav">
-					<?php
-					if(function_exists('qtranxf_generateLanguageSelectCode')) {
-						echo qtranxf_generateLanguageSelectCode('text');
-					}
-					?>
-				</nav>
+				<?php get_search_form(); ?>
 				<nav id="socialnav">
 					<?php
 					$fb = newsroom_get_facebook_url();
@@ -55,15 +49,29 @@
 					endif;
 					?>
 				</nav>
+				<nav id="langnav">
+					<?php
+					if(function_exists('qtranxf_generateLanguageSelectCode')) {
+						echo qtranxf_generateLanguageSelectCode('text');
+					}
+					?>
+				</nav>
 			</div>
 		</div>
 		<div>
 			<nav id="mastnav">
 				<?php wp_nav_menu(array('theme_location' => 'header_menu')); ?>
-	      <?php get_search_form(); ?>
 			</nav>
 		</div>
 	</header>
+	<div id="subscribe-bar" class="hidden">
+		<div id="subscribe-content">
+			Sign up for updates from The Third Pole
+		</div>
+		<div id="subscribe-form">
+			<?php echo do_shortcode('[mc4wp_form id="19800"]'); ?>
+		</div>
+	</div>
 	<div class="mobile-header" style="display:none;">
 		<?php newsroom_logo(true); ?>
 		<nav id="mobile-nav">
@@ -78,7 +86,6 @@
 					<?php
 				endif;
 				?>
-	      <?php get_search_form(); ?>
 			</div>
 		</nav>
 	</div>
