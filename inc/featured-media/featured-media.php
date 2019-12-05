@@ -76,7 +76,9 @@ class Newsroom_Featured_Media {
 
     $type = get_post_meta($post_id, 'newsroom_featured_media_type', true);
     $custom_desc = get_post_meta($post_id, 'newsroom_img_desc', true);
-    $img_desc = get_post(get_post_thumbnail_id())->post_excerpt;
+    // by mohjak 2019-11-24 Fix Trying to get property 'post_excerpt' of non-object
+    $post_by_thumbnail_id = get_post(get_post_thumbnail_id());
+    $img_desc = (isset($post_by_thumbnail_id) && $post_by_thumbnail_id) ? $post_by_thumbnail_id->post_excerpt : '';
     if ( $custom_desc == '' ) {
       $description = $img_desc;
     } else {
@@ -115,9 +117,13 @@ class Newsroom_Featured_Media {
 
   function the_content($content) {
     global $post;
-    if('post_media' == get_post_meta($post->ID, 'newsroom_featured_media_type', true)) {
-      $content = str_replace(get_post_meta($post->ID, '_newsroom_first_media', true), '', $content);
+    // by mohjak 2019-10-10
+    if (isset($post)) {
+        if ('post_media' == get_post_meta($post->ID, 'newsroom_featured_media_type', true)) {
+            $content = str_replace(get_post_meta($post->ID, '_newsroom_first_media', true), '', $content);
+        }
     }
+
     return $content;
   }
 

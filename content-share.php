@@ -3,7 +3,8 @@
 <?php
 $page_title = __('Share a map', 'newsroom');
 $map = false;
-if($_GET['map_id']) {
+// by mohjak: 2019-11-21 issue#109
+if(isset($_GET['map_id']) && $_GET['map_id']) {
 	$map = get_post($_GET['map_id']);
 	if($map && get_post_type($map->ID) == 'map')
 		$page_title = __('Share', 'newsroom') . ' ' . get_the_title($map->ID);

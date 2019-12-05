@@ -18,7 +18,7 @@ class Newsroom_Map_Widget extends WP_Widget {
 
   public function widget($args, $instance) {
     $conf = jeo_get_map_conf($instance['map']);
-    if($instance['display_posts']) {
+    if (isset($instance['display_posts']) && $instance['display_posts']) {
       $conf['marker_query'] = array(
         'is_marker_query' => true,
         'map_id' => $instance['map']
