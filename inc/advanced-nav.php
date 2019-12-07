@@ -159,7 +159,7 @@ class Newsroom_AdvancedNav {
 		function form() {
 
 			?>
-			<form class="advanced-nav-filters <?php if($_GET[$this->prefix]) echo 'active'; ?>">
+			<form class="advanced-nav-filters <?php echo (isset($_GET[$this->prefix]) && $_GET[$this->prefix]) ? 'active' : ''; ?>">
 				<input type="hidden" name="newsroom_advanced_nav" value="1" />
 				<input type="hidden" name="<?php echo $this->prefix; ?>" value="1" />
 				<div class="search-input adv-nav-input">
@@ -176,8 +176,12 @@ class Newsroom_AdvancedNav {
 				}
 				?>
 				<?php
-				$oldest = array_shift(get_posts(array('posts_per_page' => 1, 'order' => 'ASC', 'orderby' => 'date')));
-				$newest = array_shift(get_posts(array('posts_per_page' => 1, 'order' => 'DESC', 'orderby' => 'date')));
+                // by mohjak 2019-11-21 issue#82
+                $posts_asc = get_posts(array('posts_per_page' => 1, 'order' => 'ASC', 'orderby' => 'date'));
+                $psots_desc = get_posts(array('posts_per_page' => 1, 'order' => 'DESC', 'orderby' => 'date'));
+
+				$oldest = array_shift($posts_asc);
+				$newest = array_shift($psots_desc);
 
 				$before = $oldest->post_date;
 				$after = $newest->post_date;

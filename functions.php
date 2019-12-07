@@ -184,7 +184,8 @@ add_action('wp_enqueue_scripts', 'newsroom_main_scripts');
 
 function newsroom_pb_parse_query($pb_query) {
 	$query = wp_parse_args($pb_query);
-	if($query['tax_query']) {
+    // by mohjak: 2019-11-21 issue#113
+	if(isset($query['tax_query']) && $query['tax_query']) {
 		$tax_args = explode(',', $query['tax_query']);
 		$query['tax_query'] = array();
 		foreach($tax_args as $tax_arg) {
@@ -201,7 +202,7 @@ function newsroom_pb_parse_query($pb_query) {
 					'taxonomy' => $tax_arg[0],
 					'field' => 'slug',
 					'terms' => $tax_arg[1]
-				);	
+				);
 			}
 		}
 	}
@@ -317,7 +318,9 @@ function author_list_func( ){
 	$letter = '';
 	$newletter = '1';
 	$blogusers = get_users( 'orderby=nicename' );
-	usort($blogusers, create_function('$a, $b', 'return strnatcasecmp($a->last_name, $b->last_name);'));
+    usort($blogusers, function($a, $b) {
+        return strnatcasecmp($a->last_name, $b->last_name);
+    });
 	foreach ( $blogusers as $user ) {
 		if(!$user->last_name == "") {
 			$letter = substr($user->last_name,0,1);
@@ -336,7 +339,9 @@ function author_list_func( ){
 	$letter = '';
 	$newletter = '1';
 	$blogusers = get_users( 'orderby=nicename' );
-	usort($blogusers, create_function('$a, $b', 'return strnatcasecmp($a->last_name, $b->last_name);'));
+    usort($blogusers, function($a, $b) {
+        return strnatcasecmp($a->last_name, $b->last_name);
+    });
 	foreach ( $blogusers as $user ) {
 		if(!$user->last_name == "") {
 			$letter = substr($user->last_name,0,1);
@@ -374,7 +379,7 @@ function tp_publishing_date( $the_date, $d, $post ) {
 			$ts = mysql2date('U', $post->post_date);
 		} else {
 			$date = DateTime::createFromFormat( 'd-m-Y', $value );
-			$ts = $date->format('U'); 
+			$ts = $date->format('U');
 		}
 		$value = date_i18n("F d, Y", $ts);
 		return $value;
