@@ -24,7 +24,7 @@ get_header();
 				} else {
 					the_post();
 					the_content();
-                		}
+        }
 			}
 			?>
 		</div>

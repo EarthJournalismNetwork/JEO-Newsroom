@@ -62,6 +62,8 @@ class Newsroom_AdvancedNav {
 				$query->set('s', $_GET[$this->prefix . 's']);
 
 			}
+            // by mohjak 2019-11-24 Fix excel line 3 issue#20
+            // $prefix_value = $_GET[$this->prefix];
 
 			// by mohjak 2019-11-24 Fix excel line 3 issue#20
 			if(isset($_GET[$this->prefix])) {
@@ -235,8 +237,8 @@ class Newsroom_AdvancedNav {
 					$('.tax-input').each(function() {
 						$(this).find('select').chosen();
 					});
-
-					// by mohjak 2019-11-24 Undefined variable: after, before
+          
+          // by mohjak 2019-11-24 Undefined variable: after, before
 					var min = moment('<?php echo (isset($before) && $before) ? $before : ''; ?>').toDate();
 					var max = moment('<?php echo (isset($after) && $after) ? $after : ''; ?>').toDate();
 
